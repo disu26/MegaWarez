@@ -9,6 +9,13 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Clase tipo Servicio para el manejo de las descargas.
+ *
+ * @version 1.0.0 2022-03-31
+ * @author Dímar Andrey Suárez Hidalgo <dimar260212@gmail.com>
+ * @since 1.0.0
+ */
 @Service
 public class DescargaService implements IDescargaService{
 

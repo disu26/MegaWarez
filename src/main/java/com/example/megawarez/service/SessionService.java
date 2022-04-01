@@ -8,6 +8,13 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Clase tipo Servicio para el manejo de la Sesion.
+ *
+ * @version 1.0.0 2022-03-31
+ * @author Dímar Andrey Suárez Hidalgo <dimar260212@gmail.com>
+ * @since 1.0.0
+ */
 @Service
 public class SessionService implements ISessionService{
 

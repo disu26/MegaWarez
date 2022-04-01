@@ -15,5 +15,5 @@ public interface ICategoriaService {
 
     public void delete(Categoria categoria);
 
-    public Optional<Categoria> findContact(Categoria categoria);
+    public Optional<Categoria> findCategoria(Categoria categoria);
 }
