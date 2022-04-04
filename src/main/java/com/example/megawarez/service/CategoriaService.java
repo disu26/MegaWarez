@@ -85,7 +85,7 @@ public class CategoriaService implements ICategoriaService{
     }
 
     /**
-     * Encuantra una cateogria por su id.
+     * Encuentra una cateogria por su id.
      *
      * @param categoria Objeto de la categoria a buscar
      * @return Objeto de tipo Optional que retorna una cosa u otra dependiendo
