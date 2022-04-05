@@ -99,4 +99,19 @@ public class ItemService implements IItemService{
     public Optional<Item> findItem(Item item) {
         return itemDao.findById(item.getId());
     }
+
+    /**
+     * Encuentra un item por su nombre.
+     *
+     * @param item Objeto del item a buscar
+     * @return Objeto de tipo Optional que retorna una cosa u otra dependiendo
+     * de si se halla o no el item.
+     *
+     * @author Dímar Andrey Suárez Hidalgo <dimar260212@gmail.com>
+     * @since 1.0.0
+     */
+    @Transactional(readOnly = true)
+    public Optional<Item> findItemByName(Item item){
+        return itemDao.findItemByName(item.getNombre());
+    }
 }

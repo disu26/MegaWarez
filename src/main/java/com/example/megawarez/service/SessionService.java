@@ -99,4 +99,9 @@ public class SessionService implements ISessionService{
     public Optional<Session> findSession(Session session) {
         return sessionDao.findById(session.getId());
     }
+
+    @Transactional(readOnly = true)
+    public Optional<Session> findSessionByIdToken(Session session){
+        return sessionDao.findSessionByIdToken(session.getUsuario_id(), session.getToken());
+    }
 }

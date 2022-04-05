@@ -1,6 +1,6 @@
 package com.example.megawarez.controller;
 
-import com.example.megawarez.domain.Usuario;
+import com.example.megawarez.domain.*;
 import com.example.megawarez.service.*;
 import com.example.megawarez.util.LoginData;
 import com.example.megawarez.util.Response;
@@ -72,6 +72,15 @@ public class Megawarez {
      */
     private HttpStatus httpStatus = HttpStatus.OK;
 
+    /**
+     * Método para iniciar session utilizando un usuario y contraseña.
+     *
+     * @param loginData Objeto de tipo logindata utilizado para verificar las credenciales
+     * @return Objeto Response en formato JSON
+     *
+     * @author Dímar Andrey Suárez Hidalgo <dimar260212@gmail.com>
+     * @since 1.0.0
+     */
     @PostMapping(path = "/api/v1/login")
     public ResponseEntity<Response> login(@RequestBody LoginData loginData) {
         response.restart();
@@ -88,6 +97,15 @@ public class Megawarez {
         return new ResponseEntity<>(response,httpStatus);
     }
 
+    /**
+     * Crea un nuevo usuario en el sistema.
+     *
+     * @param usuario Objeto usuario a crear
+     * @return Objeto Response en formato JSON
+     *
+     * @author Dímar Andrey Suárez Hidalgo <dimar260212@gmail.com>
+     * @since 1.0.0
+     */
     @PostMapping(path = "/api/v1/signin")
     public ResponseEntity<Response> signin(@RequestBody Usuario usuario){
         response.restart();
@@ -105,6 +123,107 @@ public class Megawarez {
         }
         return new ResponseEntity<>(response,httpStatus);
     }
+
+    /**
+     * Crea una nueva categoria en el sistema.
+     *
+     * @param categoria Objeto categoria a crear
+     * @return Objeto Response en formato JSON
+     *
+     * @author Dímar Andrey Suárez Hidalgo <dimar260212@gmail.com>
+     * @since 1.0.0
+     */
+    @PostMapping(path = "/api/v1/createCategoria")
+    public ResponseEntity<Response> createCategoroia(@RequestBody Categoria categoria){
+        response.restart();
+        try {
+            log.info("Categoria a crear: {}", categoria);
+            var cat = categoriaService.findCategoriaByName(categoria);
+            if(!cat.isPresent()){
+                response.data = categoriaService.save(categoria);
+                httpStatus = httpStatus.CREATED;
+            }else{
+                throw new Exception("La categoria ya se encuentra registrada");
+            }
+        }catch (Exception exc){
+            getErrorMessageInternal(exc);
+        }
+        return new ResponseEntity<>(response,httpStatus);
+    }
+
+    /**
+     * Crea una nueva descarga en el sistema.
+     *
+     * @param descarga Objeto descarga a crear
+     * @return Objeto Response en formato JSON
+     *
+     * @author Dímar Andrey Suárez Hidalgo <dimar260212@gmail.com>
+     * @since 1.0.0
+     */
+    @PostMapping(path = "/api/v1/createDescarga")
+    public ResponseEntity<Response> createDescarga(@RequestBody Descarga descarga){
+        response.restart();
+        try {
+            log.info("Descarga a crear: {}", descarga);
+            response.data = descargaService.save(descarga);
+            httpStatus = httpStatus.CREATED;
+
+        }catch (Exception exc){
+            getErrorMessageInternal(exc);
+        }
+        return new ResponseEntity<>(response,httpStatus);
+    }
+
+    /**
+     * Crea una nueva categoria en el sistema.
+     *
+     * @param item Objeto item a crear
+     * @return Objeto Response en formato JSON
+     *
+     * @author Dímar Andrey Suárez Hidalgo <dimar260212@gmail.com>
+     * @since 1.0.0
+     */
+    @PostMapping(path = "/api/v1/createItem")
+    public ResponseEntity<Response> createItem(@RequestBody Item item){
+        response.restart();
+        try {
+            log.info("Item a crear: {}", item);
+            var ite = itemService.findItemByName(item);
+            if(!ite.isPresent()){
+                response.data = itemService.save(item);
+                httpStatus = httpStatus.CREATED;
+            }else{
+                throw new Exception("La categoria ya se encuentra registrada");
+            }
+        }catch (Exception exc){
+            getErrorMessageInternal(exc);
+        }
+        return new ResponseEntity<>(response,httpStatus);
+    }
+
+    /**
+     * Crea una nueva categoria en el sistema.
+     *
+     * @param subcategoria Objeto Subcategoria a crear
+     * @return Objeto Response en formato JSON
+     *
+     * @author Dímar Andrey Suárez Hidalgo <dimar260212@gmail.com>
+     * @since 1.0.0
+     */
+    @PostMapping(path = "/api/v1/createSubcategoria")
+    public ResponseEntity<Response> createSubcategoria(@RequestBody Subcategoria subcategoria){
+        response.restart();
+        try {
+            log.info("Subcategoria a crear: {}", subcategoria);
+            response.data = subcategoriaService.save(subcategoria);
+            httpStatus = httpStatus.CREATED;
+
+        }catch (Exception exc){
+            getErrorMessageInternal(exc);
+        }
+        return new ResponseEntity<>(response,httpStatus);
+    }
+
     /**
      * Administrador para las excepciones a nivel de SQL con respecto al manejo del acceso a los datos
      *

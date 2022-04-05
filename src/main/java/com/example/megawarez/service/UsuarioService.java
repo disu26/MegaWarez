@@ -100,6 +100,16 @@ public class UsuarioService implements IUsuarioService{
         return usuarioDao.findById(usuario.getId());
     }
 
+    /**
+     * Encuentra un usuario por su username.
+     *
+     * @param usuario Objeto del usuario a buscar
+     * @return Objeto de tipo Optional que retorna una cosa u otra dependiendo
+     * de si se halla o no el usuario.
+     *
+     * @author Dímar Andrey Suárez Hidalgo <dimar260212@gmail.com>
+     * @since 1.0.0
+     */
     @Transactional(readOnly = true)
     public Optional<Usuario> findUsuarioByUserName(Usuario usuario){
         return usuarioDao.findUsuarioByUserName(usuario.getUsername());

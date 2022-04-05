@@ -15,7 +15,17 @@ import java.util.Optional;
  * @since 1.0.0
  */
 public interface UsuarioDao extends CrudRepository<Usuario, Long> {
-    @Query("select Usuario from Usuario usuario where usuario.username = :username")
+    /**
+     * Consulta para saber si ya existe un usuario con este username.
+     *
+     * @param username Objeto de tipo String con el username a buscar.
+     * @return Objeto de tipo Optional que retorna una cosa u otra dependiendo de si lo encuentra
+     * o no.
+     *
+     * @author Dímar Andrey Suárez Hidalgo <dimar260212@gmail.com>
+     * @since 1.0.0
+     */
+    @Query("select usuario from Usuario usuario where usuario.username = :username")
     public Optional<Usuario> findUsuarioByUserName(
             @Param(value = "username") String username
     );

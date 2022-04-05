@@ -99,4 +99,19 @@ public class CategoriaService implements ICategoriaService{
     public Optional<Categoria> findCategoria(Categoria categoria) {
         return categoriaDao.findById(categoria.getId());
     }
+
+    /**
+     * Encuentra una cateogria por su nombre.
+     *
+     * @param categoria Objeto de la categoria a buscar
+     * @return Objeto de tipo Optional que retorna una cosa u otra dependiendo
+     * de si se halla o no la categoria.
+     *
+     * @author Dímar Andrey Suárez Hidalgo <dimar260212@gmail.com>
+     * @since 1.0.0
+     */
+    @Transactional(readOnly = true)
+    public Optional<Categoria> findCategoriaByName(Categoria categoria){
+        return categoriaDao.findCategoriaByName(categoria.getNombre());
+    }
 }

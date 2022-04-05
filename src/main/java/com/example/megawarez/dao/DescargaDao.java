@@ -1,7 +1,12 @@
 package com.example.megawarez.dao;
 
+import com.example.megawarez.domain.Categoria;
 import com.example.megawarez.domain.Descarga;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
+
+import java.util.Optional;
 
 /**
  * Dao para la entidad Descarga.
